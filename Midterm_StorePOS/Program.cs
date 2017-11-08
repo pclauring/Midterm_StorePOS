@@ -16,6 +16,7 @@ namespace Midterm_StorePOS
             ArrayList menu = new ArrayList();
             while (true)
             {
+                //Pierce
                 Product menuItem = new Product();
                 string menuLine = menuMaker.ReadLine();
                 if (string.IsNullOrEmpty(menuLine))
