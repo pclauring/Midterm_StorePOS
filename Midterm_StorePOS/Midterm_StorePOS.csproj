@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cart.cs" />
+    <Compile Include="Checkout.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
