@@ -8,7 +8,6 @@ namespace Midterm_StorePOS
 
     class Program
     {
-
         //sexyguy69@hotmail.com
         // jason something else, thats very informative!!!!!!!!!!!!!!!
 
