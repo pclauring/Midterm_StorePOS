@@ -11,36 +11,57 @@ namespace Midterm_StorePOS
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
         {
-            StreamReader menuMaker = new StreamReader(FILENAME);
-            ArrayList menu = new ArrayList();
+            //converts text file inventory into Arraylist menu
+            ArrayList menu = Inventory.GetMenu(FILENAME);
+            Cart cart = new Cart();
+
+            //generate empty ArrayList to hold items selected from cart
             while (true)
             {
 
-                string menuLine = menuMaker.ReadLine();
-                if (string.IsNullOrEmpty(menuLine))
+                int itemNum = 0;
+                foreach (Product item in menu)
                 {
-                    break;
+                    itemNum++;
+                    Console.WriteLine($"{itemNum}. {item}");
                 }
+                Console.WriteLine($"{itemNum+1}. Checkout");
+                Console.WriteLine();
 
-                string[] itemParts = menuLine.Split('\t');
-                string name = itemParts[0];
-                string category = itemParts[1];
-                string description = itemParts[2];
-                // needs better validation
-                double.TryParse(itemParts[3], out double price);
-                // needs better validation
-                int.TryParse(itemParts[4], out int quantity);
+                int selection = Validator.GetValidSelection($"Please select a menu option?(1 - {itemNum+1}): ", itemNum+1, 1);
 
-                Product menuItem = new Product(name, category, description, price, quantity);
-                quantity = menuItem.Quantity;
-                menu.Add(menuItem);
+                if (selection > 0 && selection < itemNum + 1)
+                {
+                    Console.Write($"You selected\n{menu[selection - 1]}\nWould you like to add to cart (Y/N)?: ");
+                    bool buy = Validator.GetYesorNo();
+                    if (buy)
+                    {
+                        int quantity = Validator.GetValidSelection($"How many would you like to buy (1 - {((Product)menu[selection - 1]).Quantity}): ", ((Product)menu[selection - 1]).Quantity, 1);
+                        Cart.AddtoCart(cart, (Product)menu[selection - 1], quantity);
+                        Console.WriteLine($"{quantity} {((Product)menu[selection - 1]).Name}(s) added to cart.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{menu[selection - 1]} not added to cart.");
+                    }
 
+                   
+
+                }
+                if (selection == itemNum + 1)
+                {
+                    int index = 0;
+                    foreach (Product item in cart.UserCart)
+                    {
+                        Console.WriteLine($"{item.Name}(s) {(int)cart.QuantityOfItems[index]}");
+                        index++;
+                    }
+                    Console.WriteLine($"{cart.GetFormattedTotal()} is the total");
+                }
             }
-            menuMaker.Close();
-            foreach (Product item in menu)
-            {
-                Console.WriteLine(item);
-            }
+
         }
+
+        
     }
 }
