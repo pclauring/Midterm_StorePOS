@@ -8,6 +8,7 @@ namespace Midterm_StorePOS
 
     class Program
     {
+        //sexyguy69@hotmail.com
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
         {
@@ -17,7 +18,7 @@ namespace Midterm_StorePOS
             {
                 Product menuItem = new Product();
                 string menuLine = menuMaker.ReadLine();
-                if (menuLine == null || menuLine == "")
+                if (string.IsNullOrEmpty(menuLine))
                 {
                     break;
                 }
