@@ -9,6 +9,7 @@ namespace Midterm_StorePOS
     class Program
     {
         //sexyguy69@hotmail.com
+        // jason something else, thats very informative!!!!!!!!!!!!!!!
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
         {
