@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
-using System;
 
 
 namespace Midterm_StorePOS
@@ -38,7 +38,7 @@ namespace Midterm_StorePOS
             menuMaker.Close();
             foreach (Product item in menu)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.Name);
             }
         }
     }

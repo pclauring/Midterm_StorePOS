@@ -46,5 +46,14 @@
         {
             return $"{name}";
         }
+
+        public Product(string name, string category, string description, double price, int quantity)
+        {
+            this.name = name;
+            this.category = category;
+            this.description = description;
+            this.price = price;
+            this.quantity = quantity;
+        }
     }
 }
