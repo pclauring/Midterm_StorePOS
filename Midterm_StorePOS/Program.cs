@@ -10,6 +10,9 @@ namespace Midterm_StorePOS
     {
         //sexyguy69@hotmail.com is a fraud
         //comments are cool
+
+        //David something else
+        //I don't really care
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
         {
