@@ -12,10 +12,12 @@ namespace Midterm_StorePOS
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
         {
+            //add comment
             StreamReader menuMaker = new StreamReader(FILENAME);
             ArrayList menu = new ArrayList();
             while (true)
             {
+                //Pierce
                 Product menuItem = new Product();
                 string menuLine = menuMaker.ReadLine();
                 if (string.IsNullOrEmpty(menuLine))
