@@ -1,0 +1,6 @@
+Golden Retriever	Dog	The All American dog.	700	10
+Poodle	Dog	The worst kind of dog.	1100	9
+Orange Tabby	Cat	It is orange and sort of stripey	75	11
+Siamese	Cat	Fancy as f%$@	300	14
+Parrot	Bird	Good pirate accessory	400	8
+Scarlet Macaw	Bird	You know what they look like	699	15
