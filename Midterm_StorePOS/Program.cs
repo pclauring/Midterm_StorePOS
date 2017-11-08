@@ -8,17 +8,14 @@ namespace Midterm_StorePOS
 
     class Program
     {
-        //jason line!!!!!@$@#$#%$#@#
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
         {
-            //add comment
             StreamReader menuMaker = new StreamReader(FILENAME);
             ArrayList menu = new ArrayList();
             while (true)
             {
-                //Pierce
-                Product menuItem = new Product();
+
                 string menuLine = menuMaker.ReadLine();
                 if (string.IsNullOrEmpty(menuLine))
                 {
@@ -26,14 +23,15 @@ namespace Midterm_StorePOS
                 }
 
                 string[] itemParts = menuLine.Split('\t');
-                itemParts[0] = menuItem.Name;
-                itemParts[1] = menuItem.Category;
-                itemParts[2] = menuItem.Description;
+                string name = itemParts[0];
+                string category = itemParts[1];
+                string description = itemParts[2];
                 // needs better validation
                 double.TryParse(itemParts[3], out double price);
-                price = menuItem.Price;
                 // needs better validation
                 int.TryParse(itemParts[4], out int quantity);
+
+                Product menuItem = new Product(name, category, description, price, quantity);
                 quantity = menuItem.Quantity;
                 menu.Add(menuItem);
 
@@ -41,7 +39,7 @@ namespace Midterm_StorePOS
             menuMaker.Close();
             foreach (Product item in menu)
             {
-                Console.WriteLine(item.Name);
+                Console.WriteLine(item);
             }
         }
     }

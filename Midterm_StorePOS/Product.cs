@@ -44,7 +44,7 @@
 
         public override string ToString()
         {
-            return $"{name}";
+            return $"{name} {category} {description} {price} {quantity}";
         }
 
         public Product(string name, string category, string description, double price, int quantity)
