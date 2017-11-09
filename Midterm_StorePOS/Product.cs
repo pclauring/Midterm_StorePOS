@@ -44,7 +44,7 @@
 
         public override string ToString()
         {
-            return $"{name, -16} {category, -8} {description, -35} {price, -5} {quantity, -6}";
+            return $"\t{name, -16} \t{category, -8} \t{description, -35} \t${price, -5} \t{quantity, -6}";
         }
 
         public Product(string name, string category, string description, double price, int quantity)

@@ -1,4 +1,4 @@
-Golden Retriever	Dog	The All American dog.	700	10
+Strawberries	Fruit	It is red and delicious	$2.99	50
 Poodle	Dog	The worst kind of dog.	1100	9
 Orange Tabby	Cat	It is orange and sort of stripey	75	11
 Siamese	Cat	Fancy as f%$@	300	14
