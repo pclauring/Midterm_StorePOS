@@ -1,6 +1,17 @@
-Strawberries	Fruit	It is red and delicious	$2.99	50
-Poodle	Dog	The worst kind of dog.	1100	9
-Orange Tabby	Cat	It is orange and sort of stripey	75	11
-Siamese	Cat	Fancy as f%$@	300	14
-Parrot	Bird	Good pirate accessory	400	8
-Scarlet Macaw	Bird	You know what they look like	699	15
+Strawberries	Fruit	It is red and delicious	2.99	50
+Red Delicious Apples	Fruit	Should consider a new name	2.89	30
+Grapfruit	Fruit	Not an orange	.89	37
+Pomegranite	Fruit	It's whats on the inside that counts	1.49	21
+Cucumber	Vegetable	It is green	.59	76
+Broccoli	Vegetable	A small edible shrubbery	1.49	53
+Potatoes	Vegetable	Boil em, mash em, stick them in a stew	1.99	110
+Lettuce	Vegetable	A round ball of green stuff	.99	78	
+Milk	Dairy	Does a body good	1.09	115
+Frosted Flakes	Cereal	They'r GR-R-REAT!	2.49	60
+Egg Nog	Dairy	Merry Christmas ya filthy animal	2.39	41
+Garbage Bags	Miscellaneous	Bags... for garbage	2.89	37
+
+	
+
+
+

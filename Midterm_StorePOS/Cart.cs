@@ -61,16 +61,18 @@ namespace Midterm_StorePOS
             return string.Format("{0:0.00}", x);
         }
 
-        public static void GetCartItems(Cart cart)
+        public static void GetCartItemized(Cart cart)
         {
-            Console.WriteLine("Item Name---Price------Quantity\n" +
-                "==================================");
+            Console.WriteLine("*RECEIPT*");
+            Console.WriteLine("Item Name------Price---Quantity\n" +
+                "===============================");
             int index = 0;
             foreach (Product item in cart.UserCart)
             {
-                Console.WriteLine($"{item.Name,-10}(s) {item.Price,-8} {(int)cart.QuantityOfItems[index],7}");
+                Console.WriteLine($"{item.Name, -12}(s) {item.Price,-5} {(int)cart.QuantityOfItems[index],4}");
                 index++;
             }
+            Console.WriteLine($"\t\t\t\t\t\t\t\t\t${cart.GetFormattedTotal()} is the subtotal");
         }
 
     }

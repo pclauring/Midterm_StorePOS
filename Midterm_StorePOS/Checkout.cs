@@ -119,7 +119,7 @@ namespace Midterm_StorePOS
             return sum % 10 == 0;
         }
 
-        public static bool VerifyCardExpire(string cardExpire)
+        /*public static bool VerifyCardExpire(string cardExpire)
         {
             cardExpire = cardExpire.Replace("/", "");
             int[] numbers = new int[cardExpire.Length];
@@ -127,7 +127,7 @@ namespace Midterm_StorePOS
             {
                 numbers[i] = Int32.Parse(cardExpire.Substring(i, 1));
             }
-        }
+        } */
 
         public static bool VerifyCardCVV(int cardCVV)
         {

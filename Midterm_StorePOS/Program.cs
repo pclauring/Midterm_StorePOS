@@ -32,14 +32,12 @@ namespace Midterm_StorePOS
                     itemNum++;
                     Console.WriteLine($"{itemNum}. {item}");
                 }
-                Console.WriteLine($"{itemNum+1}. \tCheckout");
+                Console.WriteLine($"{itemNum + 1}. \tCheckout");
                 Console.WriteLine("========================================================================================================");
 
-              //  int selection = Validator.GetValidSelection($"\nSelect an item by the Item # or press {itemNum +1} to checkout?(1 - {itemNum + 1}):  ", itemNum+1, 1);
-                Console.WriteLine($"{itemNum + 1}. Checkout");
-                Console.WriteLine();
+                //  int selection = Validator.GetValidSelection($"\nSelect an item by the Item # or press {itemNum +1} to checkout?(1 - {itemNum + 1}):  ", itemNum+1, 1);
 
-                int selection = Validator.GetValidSelection($"Please select a menu option?(1 - {itemNum + 1}): ", itemNum + 1, 1);
+                int selection = Validator.GetValidSelection($"\nPlease select a menu option?(1 - {itemNum + 1}): ", itemNum + 1, 1);
 
                 if (selection > 0 && selection < itemNum + 1)
                 {
@@ -63,15 +61,7 @@ namespace Midterm_StorePOS
                 }
                 if (selection == itemNum + 1)
                 {
-                    int index = 0;
-                    foreach (Product item in cart.UserCart)
-                    {
-                        Console.WriteLine($"{item.Name}(s) {item.Price} {(int)cart.QuantityOfItems[index]}");
-                        index++;
-                    }
-                    Console.WriteLine($"\t\t\t\t\t\t\t\t\t${cart.GetFormattedTotal()} is the total");
-
-                    Console.WriteLine($"{cart.GetFormattedTotal()} is the subtotal");
+                    Cart.GetCartItemized(cart);
                 }
             }
 
