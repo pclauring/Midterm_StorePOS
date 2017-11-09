@@ -8,10 +8,6 @@ namespace Midterm_StorePOS
 {
     class Checkout
     {
-        static int grandtotal = 0;
-        static double total = 0;
-        static double subtotal = 0;
-        static double change = 0;
 
         public static double GetPayment(double total)
         {
@@ -150,8 +146,22 @@ namespace Midterm_StorePOS
         
         public double GetSalesTax (double total)
         {
-           
-            return total;
+            double salestax = total * .06;
+            return salestax;
+        }
+        
+        public static string GetFormattedSalesTax (double salestax)
+        {
+            return string.Format("\t\t\t\t\t\t\t\t\t{0:0.00}", salestax);
+        }
+        public double GetGrandTotal (double total)
+        {
+            double grandtotal = GetSalesTax(total) + total;
+            return grandtotal;
+        }
+        public static string GetFormattedGrandTotal(double grandtotal)
+        {
+            return string.Format("\t\t\t\t\t\t\t\t\t{0:0.00}", grandtotal);
         }
     }
 }
