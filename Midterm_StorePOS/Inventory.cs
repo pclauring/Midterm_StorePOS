@@ -43,5 +43,16 @@ namespace Midterm_StorePOS
 
             return menu;
         }
+
+        public static void AddToMenu (string filename, ArrayList Menu)
+        {
+            string input = Console.ReadLine();
+            using (StreamWriter menuAdd = File.AppendText(filename))
+            {
+                menuAdd.WriteLine(input);
+                
+            }
+            
+        }
     }
 }

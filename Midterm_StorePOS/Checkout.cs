@@ -21,15 +21,23 @@ namespace Midterm_StorePOS
                 string input2 = Console.ReadLine();
                 double.TryParse(input2, out double payment);
                 double change = payment - grandTotal;
-                Console.Write("Please remember to take your receipt and your change: " + string.Format("${0:0.00}",change) + "\n");
+                Console.Write("Please remember to take your receipt and your change: " + string.Format("${0:0.00}", change) + "\n");
 
             }
             else if (Choice == 2)
             {
-                Console.WriteLine("Please choose:\n1. Visa\n2. Mastercard\n3. Discover");
-                input = Console.ReadLine();
-                //TODO: add validation
                 bool verify = false;
+                while (!verify)
+                {
+                    Console.WriteLine("Please choose:\n1. Visa\n2. Mastercard\n3. Discover");
+                    input = Console.ReadLine();
+                    if (input != "1" || input != "2" || input != "3")
+                    {
+                        Console.WriteLine("Invalid input.");
+                        verify = false;
+                    }
+                }
+                verify = false;
                 while (!verify)
                 {
                     Console.WriteLine("Please enter your 16 Digit Card Number.");
@@ -51,7 +59,8 @@ namespace Midterm_StorePOS
                     verify = VerifyCardCVV(cardCVV);
                 }
 
-                    Console.WriteLine("Thank you! " + string.Format("${0:0.00}", grandTotal) +" has been charged to your credit card. Your payment is complete.");
+                Console.WriteLine("Thank you! " + string.Format("${0:0.00}", grandTotal) + " has been charged to your credit card. Your payment is complete.");
+
             }
             else if (Choice == 3)
             {
@@ -59,7 +68,11 @@ namespace Midterm_StorePOS
                 input = Console.ReadLine();
                 Console.WriteLine("Thank you! You should see " + string.Format("${0:0.00}", grandTotal) + " charged to your account in 1-3 business days.");
             }
-            //return grandtotal = Console.Read();
+            else
+            {
+                Console.WriteLine("Not a valid input.");
+                GetPayment(grandTotal);
+            }
         }
         public static bool VerifyCreditCard(string cardNumber)
         {
