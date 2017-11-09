@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.IO;
 
 
 namespace Midterm_StorePOS
@@ -25,10 +24,10 @@ namespace Midterm_StorePOS
                     itemNum++;
                     Console.WriteLine($"{itemNum}. {item}");
                 }
-                Console.WriteLine($"{itemNum+1}. Checkout");
+                Console.WriteLine($"{itemNum + 1}. Checkout");
                 Console.WriteLine();
 
-                int selection = Validator.GetValidSelection($"Please select a menu option?(1 - {itemNum+1}): ", itemNum+1, 1);
+                int selection = Validator.GetValidSelection($"Please select a menu option?(1 - {itemNum + 1}): ", itemNum + 1, 1);
 
                 if (selection > 0 && selection < itemNum + 1)
                 {
@@ -45,7 +44,7 @@ namespace Midterm_StorePOS
                         Console.WriteLine($"{menu[selection - 1]} not added to cart.");
                     }
 
-                   
+
 
                 }
                 if (selection == itemNum + 1)
@@ -53,15 +52,16 @@ namespace Midterm_StorePOS
                     int index = 0;
                     foreach (Product item in cart.UserCart)
                     {
-                        Console.WriteLine($"{item.Name}(s) {(int)cart.QuantityOfItems[index]}");
+                        Console.WriteLine($"{item.Name}(s) {item.Price} {(int)cart.QuantityOfItems[index]}");
                         index++;
                     }
-                    Console.WriteLine($"{cart.GetFormattedTotal()} is the total");
+
+                    Console.WriteLine($"{cart.GetFormattedTotal()} is the subtotal");
                 }
             }
 
         }
 
-        
+
     }
 }
