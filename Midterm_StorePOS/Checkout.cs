@@ -48,7 +48,8 @@ namespace Midterm_StorePOS
                     Console.WriteLine((cardExpire));
 
                     Console.WriteLine("Please enter your CVV (last 3 digits on the back of the card)");
-                    string cardCCV = Console.ReadLine();
+                    int cardCVV = Console.Read();
+                    verify = VerifyCardCVV(cardCVV);
 
                 }
                 else if (CardChoice == 2)
@@ -124,22 +125,26 @@ namespace Midterm_StorePOS
 
         public static bool VerifyCardExpire(string cardExpire)
         {
-            DateTime today = DateTime.Today;
-            if (cardExpire = today.)
+            cardExpire = cardExpire.Replace("/", "");
+            int[] numbers = new int[cardExpire.Length];
+            for (int i = 0; i < cardExpire.Length; i++)
+            {
+                numbers[i] = Int32.Parse(cardExpire.Substring(i, 1));
+            }
         }
 
         public static bool VerifyCardCVV(int cardCVV)
         {
             cardCVV = Console.Read();
 
-            if (cardCVV >= 0 && cardCVV <= 999 && )
+            if (cardCVV >= 0 && cardCVV <= 999 )
             {
                 return true;
             }
             else
             {
-                VerifyCardCVV(cardCVV);
-                return false;
+                return VerifyCardCVV(cardCVV);
+                
             }
         }
         
