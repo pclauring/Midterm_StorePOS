@@ -10,7 +10,10 @@ namespace Midterm_StorePOS
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
         {
+
+
             Console.WriteLine("Welcome to THE grocery store!!");
+
             //converts text file inventory into Arraylist menu
             ArrayList menu = Inventory.GetMenu(FILENAME);
             Cart cart = new Cart();
