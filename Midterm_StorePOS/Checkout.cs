@@ -28,11 +28,14 @@ namespace Midterm_StorePOS
                 Console.WriteLine("Please choose:\n1. Visa\n2. Mastercard\n3. Discover");
                 input = Console.ReadLine();
                 //TODO: add validation
-
+                bool verify = false;
+                while (!verify)
+                {
                     Console.WriteLine("Please enter your 16 Digit Card Number.");
                     string cardNum = Console.ReadLine();
-                    //verify = VerifyCreditCard(cardNum);
-                    
+                    verify = VerifyCreditCard(cardNum);
+                }
+                verify = false;    
                     Console.WriteLine("Please enter the expiration date (MM/YY)");
                     string cardExpire = Console.ReadLine();
                     Console.WriteLine("Please enter your CVV (last 3 digits on the back of the card)");
@@ -52,25 +55,27 @@ namespace Midterm_StorePOS
         public static bool VerifyCreditCard(string cardNumber)
         {
             cardNumber = cardNumber.Replace("-", "").Replace(" ", "");
+
+            //Convert card number into an array
             int[] numbers = new int[cardNumber.Length];
             for (int i = 0; i < cardNumber.Length; i++)
             {
                 numbers[i] = Int32.Parse(cardNumber.Substring(i, 1));
             }
             int sum = 0;
-            bool valid = true;
+            bool valid = false;
             for (int j = numbers.Length - 1; j >= 0; j--)
             {
-                int Number = numbers[j];
+                int digit = numbers[j];
                 if (valid)
                 {
-                    Number *= 2;
-                    if (Number > 9)
+                    digit *= 2;
+                    if (digit > 9)
                     {
-                        Number -= 9;
+                        digit -= 9;
                     }
                 }
-                sum += Number;
+                sum += digit;
                 valid = !valid;
             }
             return sum % 10 == 0;
