@@ -13,7 +13,7 @@ namespace Midterm_StorePOS
         static double subtotal = 0;
         static double change = 0;
 
-        public static double GetPayment()
+        public static double GetPayment(double total)
         {
             Console.WriteLine("How would you like to pay?\n1. Cash\n2. Credit\n3. Check");
             string input = Console.ReadLine();
@@ -31,15 +31,17 @@ namespace Midterm_StorePOS
                 Console.WriteLine("Please choose:\n1. Visa\n2. Mastercard\n3. Discover.");
                 string input3 = Console.ReadLine();
                 int.TryParse(input3, out int CardChoice);
+                bool verify = false;
+
+                while (!verify)
                 if (CardChoice == 1)
                 {
-                    bool verify = true;
 
 
                     Console.WriteLine("Please enter your 16 Digit Card Number.");
                     string cardNum = Console.ReadLine();
                     verify = VerifyCreditCard(cardNum);
-
+                    
 
                     Console.WriteLine("Please enter the expiration date (MM/YY)");
                     string cardExpire = Console.ReadLine();
@@ -48,7 +50,6 @@ namespace Midterm_StorePOS
                     Console.WriteLine("Please enter your CVV (last 3 digits on the back of the card)");
                     string cardCCV = Console.ReadLine();
 
-                    Console.WriteLine($"Thank you! ${total} has been charged to your credit card. Your payment is complete.");
                 }
                 else if (CardChoice == 2)
                 {
@@ -91,6 +92,7 @@ namespace Midterm_StorePOS
             {
                 Console.WriteLine("Please enter your check number.");
             }
+            Console.WriteLine($"Thank you! ${total} has been charged to your credit card. Your payment is complete.");
             return grandtotal = Console.Read();
         }
         public static bool VerifyCreditCard(string cardNumber)
@@ -118,6 +120,33 @@ namespace Midterm_StorePOS
                 valid = !valid;
             }
             return sum % 10 == 0;
+        }
+
+        public static bool VerifyCardExpire(string cardExpire)
+        {
+            DateTime today = DateTime.Today;
+            if (cardExpire = today.)
+        }
+
+        public static bool VerifyCardCVV(int cardCVV)
+        {
+            cardCVV = Console.Read();
+
+            if (cardCVV >= 0 && cardCVV <= 999 && )
+            {
+                return true;
+            }
+            else
+            {
+                VerifyCardCVV(cardCVV);
+                return false;
+            }
+        }
+        
+        public double GetSalesTax (double total)
+        {
+           
+            return total;
         }
     }
 }

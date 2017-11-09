@@ -11,6 +11,8 @@ namespace Midterm_StorePOS
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
         {
+            Checkout checkout = new Checkout();
+            Checkout.GetPayment();
             //converts text file inventory into Arraylist menu
             ArrayList menu = Inventory.GetMenu(FILENAME);
             Cart cart = new Cart();
