@@ -55,13 +55,13 @@ namespace Midterm_StorePOS
                     }
 
 
-
-
-
                 }
                 if (selection == itemNum + 1)
                 {
                     Cart.GetCartItemized(cart);
+                    Checkout.GetFormattedSalesTax(cart.GetTotal());
+                    Checkout.GetFormattedGrandTotal(cart.GetTotal());
+                    Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
                 }
             }
 

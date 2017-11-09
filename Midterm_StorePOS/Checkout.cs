@@ -9,88 +9,45 @@ namespace Midterm_StorePOS
     class Checkout
     {
 
-        public static double GetPayment(double total)
+        public static void GetPayment(double grandTotal)
         {
             Console.WriteLine("How would you like to pay?\n1. Cash\n2. Credit\n3. Check");
             string input = Console.ReadLine();
             int.TryParse(input, out int Choice);
             if (Choice == 1)
             {
-                Console.WriteLine($"Please insert ${total}. If you have coins, please insert them first.");
+                Console.WriteLine($"Please insert ${grandTotal}. If you have coins, please insert them first.");
                 string input2 = Console.ReadLine();
-                double.TryParse(input2, out double change);
-                subtotal = total - change;
+                double.TryParse(input2, out double payment);
+                double change = payment - grandTotal;
+                Console.Write("Please remember to take your receipt and your change: " + string.Format("${0:0.00}",change) + "\n");
 
             }
             else if (Choice == 2)
             {
-                Console.WriteLine("Please choose:\n1. Visa\n2. Mastercard\n3. Discover.");
-                string input3 = Console.ReadLine();
-                int.TryParse(input3, out int CardChoice);
-                bool verify = false;
-
-                while (!verify)
-                if (CardChoice == 1)
-                {
-
+                Console.WriteLine("Please choose:\n1. Visa\n2. Mastercard\n3. Discover");
+                input = Console.ReadLine();
+                //TODO: add validation
 
                     Console.WriteLine("Please enter your 16 Digit Card Number.");
                     string cardNum = Console.ReadLine();
-                    verify = VerifyCreditCard(cardNum);
+                    //verify = VerifyCreditCard(cardNum);
                     
-
                     Console.WriteLine("Please enter the expiration date (MM/YY)");
                     string cardExpire = Console.ReadLine();
-                    Console.WriteLine((cardExpire));
-
                     Console.WriteLine("Please enter your CVV (last 3 digits on the back of the card)");
-                    int cardCVV = Console.Read();
-                    verify = VerifyCardCVV(cardCVV);
+                    string cardCVV = Console.ReadLine();
+                    //verify = VerifyCardCVV(cardCVV);
 
-                }
-                else if (CardChoice == 2)
-                {
-                    Console.WriteLine("Please enter your 16 Digit Card Number.");
-                    string cardNum = Console.ReadLine();
-                    Console.WriteLine(VerifyCreditCard(cardNum));
-                    string cardNumber = Console.ReadLine();
-
-
-                    Console.WriteLine("Please enter the expiration date (MM/YY)");
-                    string cardExpire = Console.ReadLine();
-                    Console.WriteLine(cardExpire);
-
-                    Console.WriteLine("Please enter your CCV (last 3 digits on the back of the card)");
-                    string cardCCV = Console.ReadLine();
-
-
-                    Console.WriteLine($"Thank you! ${total} has been charged to your credit card. Your payment is complete.");
-                }
-                else if (CardChoice == 3)
-                {
-                    Console.WriteLine("Please enter your 16 Digit Card Number.");
-                    string cardNum = Console.ReadLine();
-                    Console.WriteLine(VerifyCreditCard(cardNum));
-                    string cardNumber = Console.ReadLine();
-
-
-                    Console.WriteLine("Please enter the expiration date (MM/YY)");
-                    string cardExpire = Console.ReadLine();
-                    Console.WriteLine(cardExpire);
-
-                    Console.WriteLine("Please enter your CCV (last 3 digits on the back of the card)");
-                    string cardCCV = Console.ReadLine();
-
-
-                    Console.WriteLine($"Thank you! ${total} has been charged to your credit card. Your payment is complete.");
-                }
+                    Console.WriteLine($"Thank you! ${grandTotal} has been charged to your credit card. Your payment is complete.");
             }
             else if (Choice == 3)
             {
                 Console.WriteLine("Please enter your check number.");
+                input = Console.ReadLine();
+                Console.WriteLine($"Thank you! You should see {grandTotal} charged to your account in 1-3 business days.");
             }
-            Console.WriteLine($"Thank you! ${total} has been charged to your credit card. Your payment is complete.");
-            return grandtotal = Console.Read();
+            //return grandtotal = Console.Read();
         }
         public static bool VerifyCreditCard(string cardNumber)
         {
@@ -154,9 +111,9 @@ namespace Midterm_StorePOS
         {
             return string.Format("\t\t\t\t\t\t\t\t\t{0:0.00}", salestax);
         }
-        public double GetGrandTotal (double total)
+        public static double GetGrandTotal (double total)
         {
-            double grandtotal = GetSalesTax(total) + total;
+            double grandtotal = (total)*.06 + total;
             return grandtotal;
         }
         public static string GetFormattedGrandTotal(double grandtotal)
