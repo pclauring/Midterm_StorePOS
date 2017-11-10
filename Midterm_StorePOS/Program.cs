@@ -37,7 +37,7 @@ namespace Midterm_StorePOS
                         Console.WriteLine($"{itemNum}. {item}");
                     }
                     Console.WriteLine($"{itemNum + 1}. \tCheckout");
-                    Console.WriteLine($"{itemNum + 2}. \tAdd Item");
+                    Console.WriteLine($"{itemNum + 2}. \tAdd New Product");
 
                     Console.WriteLine("========================================================================================================");
 
@@ -63,11 +63,11 @@ namespace Midterm_StorePOS
                     if (selection == itemNum + 1)
                     {
                         checkout = true;
-                        Cart.GetCartItemized(cart);
+                        Cart.GetReceipt(cart);
                         Checkout.GetFormattedSalesTax(cart.GetTotal());
                         Checkout.GetFormattedGrandTotal(cart.GetTotal());
                         Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
-
+                        Cart.GetCartItemized(cart);
 
                         Console.Write("Would you like to keep shopping? (Y/N): ");
                         keepShopping = Validator.GetYesorNo();
@@ -79,7 +79,7 @@ namespace Midterm_StorePOS
                         menu = Inventory.GetMenu(FILENAME);
                     }
                 }
-            } Console.WriteLine("Thank you for shopping at our Grocery Store!");
+            } Console.WriteLine("Thank you for shopping at THE Grocery Store!");
         }
     }
 }

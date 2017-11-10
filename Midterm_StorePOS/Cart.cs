@@ -64,15 +64,34 @@ namespace Midterm_StorePOS
         public static void GetCartItemized(Cart cart)
         {
             Console.WriteLine("*RECEIPT*");
-            Console.WriteLine("Item Name------Price---Quantity\n" +
+            Console.WriteLine("Item Name-----Price---Quantity\n" +
                 "===============================");
             int index = 0;
             foreach (Product item in cart.UserCart)
             {
-                Console.WriteLine($"{item.Name, -12}(s) {item.Price,-5} {(int)cart.QuantityOfItems[index],4}");
+                Console.WriteLine($"{item.Name, -12}(s) {item.Price,-5} {(int)cart.QuantityOfItems[index],4}\n");
                 index++;
             }
-            Console.WriteLine($"\t\t\t\t\t\t\t\t\t${cart.GetFormattedTotal()} is the subtotal");
+            Console.WriteLine($"${cart.GetFormattedTotal()} is the subtotal");
+            Console.WriteLine($"{Checkout.GetFormattedSalesTax(Checkout.GetSalesTax(cart.GetTotal()))} is the tax");
+            Console.WriteLine("===============================");
+            Console.WriteLine($"{Checkout.GetFormattedGrandTotal(Checkout.GetGrandTotal(cart.GetTotal()))} is the grand total.\n");
+        }
+        public static void GetReceipt(Cart cart)
+        {
+            Console.WriteLine("*CART*");
+            Console.WriteLine("Item Name-----Price---Quantity\n" +
+                "===============================");
+            int index = 0;
+            foreach (Product item in cart.UserCart)
+            {
+                Console.WriteLine($"{item.Name,-12}(s) {item.Price,-5} {(int)cart.QuantityOfItems[index],4}\n");
+                index++;
+            }
+            Console.WriteLine($"${cart.GetFormattedTotal()} is the subtotal");
+            Console.WriteLine($"{Checkout.GetFormattedSalesTax(Checkout.GetSalesTax(cart.GetTotal()))} is the tax");
+            Console.WriteLine("===============================");
+            Console.WriteLine($"{Checkout.GetFormattedGrandTotal(Checkout.GetGrandTotal(cart.GetTotal()))} is the grand total.\n");
         }
 
     }

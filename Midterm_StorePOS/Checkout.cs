@@ -9,7 +9,6 @@ namespace Midterm_StorePOS
 {
     class Checkout
     {
-
         public static void GetPayment(double grandTotal)
         {
             Console.WriteLine("How would you like to pay?\n1. Cash\n2. Credit\n3. Check");
@@ -17,12 +16,38 @@ namespace Midterm_StorePOS
             int.TryParse(input, out int Choice);
             if (Choice == 1)
             {
-                Console.WriteLine($"Please insert " + string.Format("${0:0.00}", grandTotal) + ". If you have coins, please insert them first.");
+                Console.WriteLine($"Please insert " + string.Format("${0:0.00}", grandTotal) + ".");
                 string input2 = Console.ReadLine();
                 double.TryParse(input2, out double payment);
-                double change = payment - grandTotal;
-                Console.Write("Please remember to take your receipt and your change: " + string.Format("${0:0.00}", change) + "\n");
-
+                double change = grandTotal - payment;
+                if (payment > grandTotal || payment == grandTotal)
+                {
+                    double realChange = change * -1;
+                    Console.Write("\nThank you! Please remember to take your receipt and your change: " + string.Format("${0:0.00}", realChange) + "\n\n");
+                }
+                //TODO: Finish validation for less than grandTotal
+                else if (payment < grandTotal)
+                {
+                    bool pay = false;
+                    while (!pay)
+                    {
+                        double newGrandTotal = grandTotal - payment;
+                        Console.WriteLine($"You still owe " + string.Format("${0:0.00}", (newGrandTotal)));
+                        Console.WriteLine("Please insert " + string.Format("${0:0.00}", (newGrandTotal)));
+                        input = Console.ReadLine();
+                        double.TryParse(input, out double payAgain);
+                        if (payAgain == newGrandTotal)
+                        {
+                            pay = true;
+                        }
+                        else if (payAgain < newGrandTotal)
+                        {
+                            double payThird = newGrandTotal - payAgain;
+                            pay = false;
+                        }
+                        break;
+                    }
+                }
             }
             else if (Choice == 2)
             {
@@ -30,17 +55,16 @@ namespace Midterm_StorePOS
                 while (!verify)
                 {
                     Console.WriteLine("Please choose:\n1. Visa\n2. Mastercard\n3. Discover");
-                    input = Console.ReadLine();
+                    input = Console.ReadLine().ToLower();
                     if (input != "1" || input != "2" || input != "3")
                     {
-                        Console.WriteLine("Invalid input.");
-                        verify = false;
+                        verify = true;
                     }
                 }
                 verify = false;
                 while (!verify)
                 {
-                    Console.WriteLine("Please enter your 16 Digit Card Number.");
+                    Console.WriteLine("Please enter your 16 Digit Card Number. (- and spaces are acceptable)");
                     string cardNum = Console.ReadLine();
                     verify = VerifyCreditCard(cardNum);
                 }
@@ -59,14 +83,28 @@ namespace Midterm_StorePOS
                     verify = VerifyCardCVV(cardCVV);
                 }
 
-                Console.WriteLine("Thank you! " + string.Format("${0:0.00}", grandTotal) + " has been charged to your credit card. Your payment is complete.");
+                Console.WriteLine("\nThank you! " + string.Format("${0:0.00}", grandTotal) + " has been charged to your credit card. Your payment is complete.\n");
 
             }
             else if (Choice == 3)
             {
-                Console.WriteLine("Please enter your check number.");
-                input = Console.ReadLine();
-                Console.WriteLine("Thank you! You should see " + string.Format("${0:0.00}", grandTotal) + " charged to your account in 1-3 business days.");
+                bool verify = false;
+                while (!verify)
+                {
+                    Console.WriteLine("Please enter your 9 digit check number.");
+                    input = Console.ReadLine();
+                    if (input.Length == 9)
+                    {
+                        Console.WriteLine("\nThank you! You should see " + string.Format("${0:0.00}", grandTotal) + " charged to your account in 1-3 business days.\n");
+                        verify = false;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not a valid check number.");
+                        verify = false;
+                    }
+                }
             }
             else
             {
@@ -74,10 +112,17 @@ namespace Midterm_StorePOS
                 GetPayment(grandTotal);
             }
         }
+
         public static bool VerifyCreditCard(string cardNumber)
         {
+            //Luhn Algorithim here
             cardNumber = cardNumber.Replace("-", "").Replace(" ", "");
-
+            for (int i = 0; i < cardNumber.Length; i++)
+                if (cardNumber[i] >= 'a' && cardNumber[i] <= 'z' || cardNumber[i] >= 'A' && cardNumber[i] <= 'Z' || cardNumber.Length > 16)
+                {
+                    return false;
+                }
+                    
             int[] numbers = new int[cardNumber.Length];
             for (int i = 0; i < cardNumber.Length; i++)
             {
@@ -101,7 +146,7 @@ namespace Midterm_StorePOS
             }
             return sum % 10 == 0;
         }
-
+        
         public static bool VerifyCardExpire(string ExpirDate)
         {
             Regex monthCheck = new Regex(@"^(0[1-9]|1[0-2])$");
@@ -131,11 +176,9 @@ namespace Midterm_StorePOS
                 return false;
             }
             return true;
-                
-            
         }
         
-        public double GetSalesTax (double total)
+        public static double GetSalesTax (double total)
         {
             double salestax = total * .06;
             return salestax;
@@ -143,7 +186,7 @@ namespace Midterm_StorePOS
         
         public static string GetFormattedSalesTax (double salestax)
         {
-            return string.Format("\t\t\t\t\t\t\t\t\t{0:0.00}", salestax);
+            return string.Format("${0:0.00}", salestax);
         }
         public static double GetGrandTotal (double total)
         {
@@ -152,7 +195,7 @@ namespace Midterm_StorePOS
         }
         public static string GetFormattedGrandTotal(double grandtotal)
         {
-            return string.Format("\t\t\t\t\t\t\t\t\t{0:0.00}", grandtotal);
+            return string.Format("${0:0.00}", grandtotal);
         }
     }
 }
