@@ -10,17 +10,15 @@ namespace Midterm_StorePOS
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
         {
-
-
             Console.WriteLine("Welcome to THE grocery store!!");
 
             //converts text file inventory into Arraylist menu
             ArrayList menu = Inventory.GetMenu(FILENAME);
-
             bool keepShopping = true;
 
             while (keepShopping)
             {
+
                 Cart cart = new Cart();
 
                 //generate empty ArrayList to hold items selected from cart
@@ -39,9 +37,11 @@ namespace Midterm_StorePOS
                         Console.WriteLine($"{itemNum}. {item}");
                     }
                     Console.WriteLine($"{itemNum + 1}. \tCheckout");
+                    Console.WriteLine($"{itemNum + 2}. \tAdd Item");
+
                     Console.WriteLine("========================================================================================================");
 
-                    int selection = Validator.GetValidSelection($"\nSelect an item by the Item # or press {itemNum + 1} to checkout?(1 - {itemNum + 1}):  ", itemNum + 1, 1);
+                    int selection = Validator.GetValidSelection($"\nSelect an item by the Item # or enter {itemNum + 1} to checkout?(1 - {itemNum + 2}):  ", itemNum + 2, 1);
 
                     if (selection > 0 && selection < itemNum + 1)
                     {
@@ -75,16 +75,19 @@ namespace Midterm_StorePOS
                         }
 
                         checkout = true;
+
                         Console.Write("Would you like to keep shopping? (Y/N): ");
                         keepShopping = Validator.GetYesorNo();
                     }
+                    if (selection == itemNum + 2)
+                    {
+                        Console.WriteLine("Please enter what you wanted to add to the store.\nEnter the item name, category, description, price (ex:13.34), and quantity with a single tab in beweteen each part.");
+                        Inventory.AddToMenu(FILENAME, menu);
+                        menu = Inventory.GetMenu(FILENAME);
+                    }
                 }
-
             }
             Console.WriteLine("Thank you for shopping at our Grocery Store!");
-
         }
-
-
     }
 }
