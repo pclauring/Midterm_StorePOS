@@ -63,8 +63,8 @@ namespace Midterm_StorePOS
 
         public static void GetCartItemized(Cart cart)
         {
-            Console.WriteLine("*RECEIPT*");
-            Console.WriteLine("Item Name------Price---Quantity\n" +
+            Console.WriteLine("\n*RECEIPT*");
+            Console.WriteLine("Item Name----------Price-------Quantity\n" +
                 "===============================");
             int index = 0;
             foreach (Product item in cart.UserCart)

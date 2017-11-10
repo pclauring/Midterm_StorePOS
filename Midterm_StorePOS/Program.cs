@@ -41,11 +41,11 @@ namespace Midterm_StorePOS
                     Console.WriteLine($"{itemNum + 1}. \tCheckout");
                     Console.WriteLine("========================================================================================================");
 
-                    int selection = Validator.GetValidSelection($"\nSelect an item by the Item # or press {itemNum + 1} to checkout?(1 - {itemNum + 1}):  ", itemNum + 1, 1);
+                    int selection = Validator.GetValidSelection($"\nSelect an item by the Item # or press {itemNum + 1} to checkout (1 - {itemNum + 1}):  ", itemNum + 1, 1);
 
                     if (selection > 0 && selection < itemNum + 1)
                     {
-                        Console.Write($"\tYou selected\n{menu[selection - 1]}\nWould you like to add to cart (Y/N)?: ");
+                        Console.Write($"\tYou selected\n{menu[selection - 1]}\n\nWould you like to add to cart (Y/N)?: ");
                         bool buy = Validator.GetYesorNo();
                         if (buy)
                         {
