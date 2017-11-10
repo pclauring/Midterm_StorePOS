@@ -34,7 +34,7 @@ namespace Midterm_StorePOS
                     foreach (Product item in menu)
                     {
                         itemNum++;
-                        Console.WriteLine($"{itemNum}. {item}");
+                        Console.WriteLine($"{itemNum}. {item}");    
                     }
                     Console.WriteLine($"{itemNum + 1}. \tCheckout");
                     Console.WriteLine($"{itemNum + 2}. \tAdd New Product");

@@ -20,20 +20,16 @@ namespace Midterm_StorePOS
                 string input2 = Console.ReadLine();
                 double.TryParse(input2, out double payment);
                 double change = grandTotal - payment;
-                if (change < grandTotal)
-                {
-                    double realChange = change * -1;
-                    Console.Write("\nThank you! Please remember to take your receipt and your change: " + string.Format("${0:0.00}", realChange) + "\n\n");
-                }
+                
                 //TODO: Finish validation for less than grandTotal
-                /*else if (payment < grandTotal)
+                if (payment < grandTotal)
                 {
                     bool pay = false;
                     while (!pay)
                     {
                         double newGrandTotal = grandTotal - payment;
-                        Console.WriteLine($"You still owe " + string.Format("${0:0.00}", (newGrandTotal)));
-                        Console.WriteLine("Please insert " + string.Format("${0:0.00}", (newGrandTotal)));
+                        Console.WriteLine($"You still owe " + string.Format("${0:0.00}.", (newGrandTotal)));
+                        Console.WriteLine("Please insert " + string.Format("${0:0.00}.", (newGrandTotal)));
                         input = Console.ReadLine();
                         double.TryParse(input, out double payAgain);
                         if (payAgain == newGrandTotal)
@@ -47,7 +43,12 @@ namespace Midterm_StorePOS
                         }
                         break;
                     }
-                }*/
+                }
+                else if (change < grandTotal)
+                {
+                    double realChange = change * -1;
+                    Console.Write("\nThank you! Please remember to take your receipt and your change: " + string.Format("${0:0.00}", realChange) + "\n\n");
+                }
             }
             else if (Choice == 2)
             {
