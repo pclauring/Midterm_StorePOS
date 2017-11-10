@@ -21,10 +21,10 @@ namespace Midterm_StorePOS
 
             while (keepShopping)
             {
-            Cart cart = new Cart();
+                Cart cart = new Cart();
 
-            //generate empty ArrayList to hold items selected from cart
-            bool checkout = false;
+                //generate empty ArrayList to hold items selected from cart
+                bool checkout = false;
                 while (!checkout)
                 {
                     Console.WriteLine("________________________________________________________________________________________________________");
@@ -62,13 +62,19 @@ namespace Midterm_StorePOS
                     }
                     if (selection == itemNum + 1)
                     {
-                        checkout = true;
-                        Cart.GetCartItemized(cart);
-                        Checkout.GetFormattedSalesTax(cart.GetTotal());
-                        Checkout.GetFormattedGrandTotal(cart.GetTotal());
-                        Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
+                        if (cart.UserCart.Count == 0)
+                        {
+                            Console.WriteLine("You don't have anything in your cart!");
+                        }
+                        else
+                        {
+                            Cart.GetCartItemized(cart);
+                            Checkout.GetFormattedSalesTax(cart.GetTotal());
+                            Checkout.GetFormattedGrandTotal(cart.GetTotal());
+                            Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
+                        }
 
-                        
+                        checkout = true;
                         Console.Write("Would you like to keep shopping? (Y/N): ");
                         keepShopping = Validator.GetYesorNo();
                     }
