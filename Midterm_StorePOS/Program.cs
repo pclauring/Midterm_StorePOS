@@ -9,12 +9,12 @@ namespace Midterm_StorePOS
     {
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
-        { 
-           Console.WriteLine("Welcome to THE grocery store!!");
+        {
+            Console.WriteLine("Welcome to THE grocery store!!");
 
-           //converts text file inventory into Arraylist menu
-           ArrayList menu = Inventory.GetMenu(FILENAME);
-           bool keepShopping = true;
+            //converts text file inventory into Arraylist menu
+            ArrayList menu = Inventory.GetMenu(FILENAME);
+            bool keepShopping = true;
 
             while (keepShopping)
             {
@@ -62,12 +62,19 @@ namespace Midterm_StorePOS
                     }
                     if (selection == itemNum + 1)
                     {
-                        checkout = true;
-                        Cart.GetCartItemized(cart);
-                        Checkout.GetFormattedSalesTax(cart.GetTotal());
-                        Checkout.GetFormattedGrandTotal(cart.GetTotal());
-                        Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
+                        if (cart.UserCart.Count == 0)
+                        {
+                            Console.WriteLine("You don't have anything in your cart!");
+                        }
+                        else
+                        {
+                            Cart.GetCartItemized(cart);
+                            Checkout.GetFormattedSalesTax(cart.GetTotal());
+                            Checkout.GetFormattedGrandTotal(cart.GetTotal());
+                            Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
+                        }
 
+                        checkout = true;
 
                         Console.Write("Would you like to keep shopping? (Y/N): ");
                         keepShopping = Validator.GetYesorNo();
@@ -79,7 +86,8 @@ namespace Midterm_StorePOS
                         menu = Inventory.GetMenu(FILENAME);
                     }
                 }
-            } Console.WriteLine("Thank you for shopping at our Grocery Store!");
+            }
+            Console.WriteLine("Thank you for shopping at our Grocery Store!");
         }
     }
 }
