@@ -20,13 +20,13 @@ namespace Midterm_StorePOS
                 string input2 = Console.ReadLine();
                 double.TryParse(input2, out double payment);
                 double change = grandTotal - payment;
-                if (payment > grandTotal || payment == grandTotal)
+                if (change < grandTotal)
                 {
                     double realChange = change * -1;
                     Console.Write("\nThank you! Please remember to take your receipt and your change: " + string.Format("${0:0.00}", realChange) + "\n\n");
                 }
                 //TODO: Finish validation for less than grandTotal
-                else if (payment < grandTotal)
+                /*else if (payment < grandTotal)
                 {
                     bool pay = false;
                     while (!pay)
@@ -47,7 +47,7 @@ namespace Midterm_StorePOS
                         }
                         break;
                     }
-                }
+                }*/
             }
             else if (Choice == 2)
             {

@@ -63,21 +63,18 @@ namespace Midterm_StorePOS
                     if (selection == itemNum + 1)
                     {
                         checkout = true;
-                        Cart.GetReceipt(cart);
-                        Checkout.GetFormattedSalesTax(cart.GetTotal());
-                        Checkout.GetFormattedGrandTotal(cart.GetTotal());
-                        Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
-                        Cart.GetCartItemized(cart);
+                        
                         if (cart.UserCart.Count == 0)
                         {
                             Console.WriteLine("You don't have anything in your cart!");
                         }
                         else
                         {
-                            Cart.GetCartItemized(cart);
+                            Cart.GetReceipt(cart);
                             Checkout.GetFormattedSalesTax(cart.GetTotal());
                             Checkout.GetFormattedGrandTotal(cart.GetTotal());
                             Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
+                            Cart.GetCartItemized(cart);
                         }
 
                         checkout = true;
