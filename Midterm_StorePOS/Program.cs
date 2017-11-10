@@ -62,15 +62,12 @@ namespace Midterm_StorePOS
                     }
                     if (selection == itemNum + 1)
                     {
-<<<<<<< HEAD
                         checkout = true;
                         Cart.GetReceipt(cart);
                         Checkout.GetFormattedSalesTax(cart.GetTotal());
                         Checkout.GetFormattedGrandTotal(cart.GetTotal());
                         Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
                         Cart.GetCartItemized(cart);
-=======
->>>>>>> 63abaa7c6e940086f8ca1a926346968f998a9922
                         if (cart.UserCart.Count == 0)
                         {
                             Console.WriteLine("You don't have anything in your cart!");
@@ -95,13 +92,9 @@ namespace Midterm_StorePOS
                         menu = Inventory.GetMenu(FILENAME);
                     }
                 }
-<<<<<<< HEAD
             } Console.WriteLine("Thank you for shopping at THE Grocery Store!");
-            }
-=======
-            }
-            Console.WriteLine("Thank you for shopping at our Grocery Store!");
->>>>>>> 63abaa7c6e940086f8ca1a926346968f998a9922
         }
     }
+}
+            
 
