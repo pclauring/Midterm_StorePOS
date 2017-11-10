@@ -119,7 +119,7 @@ namespace Midterm_StorePOS
             //Luhn Algorithim here
             cardNumber = cardNumber.Replace("-", "").Replace(" ", "");
             for (int i = 0; i < cardNumber.Length; i++)
-                if (cardNumber[i] >= 'a' && cardNumber[i] <= 'z' || cardNumber[i] >= 'A' && cardNumber[i] <= 'Z' || cardNumber.Length > 16)
+                if (cardNumber[i] >= 'a' && cardNumber[i] <= 'z' || cardNumber[i] >= 'A' && cardNumber[i] <= 'Z' || cardNumber.Length > 16 || cardNumber.Length < 16 || cardNumber == "0000000000000000")
                 {
                     return false;
                 }
