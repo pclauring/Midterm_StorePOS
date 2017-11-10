@@ -9,12 +9,12 @@ namespace Midterm_StorePOS
     {
         const string FILENAME = "inventory.txt";
         static void Main(string[] args)
-        { 
-           Console.WriteLine("Welcome to THE grocery store!!");
+        {
+            Console.WriteLine("Welcome to THE grocery store!!");
 
-           //converts text file inventory into Arraylist menu
-           ArrayList menu = Inventory.GetMenu(FILENAME);
-           bool keepShopping = true;
+            //converts text file inventory into Arraylist menu
+            ArrayList menu = Inventory.GetMenu(FILENAME);
+            bool keepShopping = true;
 
             while (keepShopping)
             {
@@ -45,7 +45,7 @@ namespace Midterm_StorePOS
 
                     if (selection > 0 && selection < itemNum + 1)
                     {
-                        Console.Write($"\tYou selected\n{menu[selection - 1]}\nWould you like to add to cart (Y/N)?: ");
+                        Console.Write($"\tYou selected\n{menu[selection - 1]}\n\nWould you like to add to cart (Y/N)?: ");
                         bool buy = Validator.GetYesorNo();
                         if (buy)
                         {
@@ -68,6 +68,19 @@ namespace Midterm_StorePOS
                         Checkout.GetFormattedGrandTotal(cart.GetTotal());
                         Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
                         Cart.GetCartItemized(cart);
+                        if (cart.UserCart.Count == 0)
+                        {
+                            Console.WriteLine("You don't have anything in your cart!");
+                        }
+                        else
+                        {
+                            Cart.GetCartItemized(cart);
+                            Checkout.GetFormattedSalesTax(cart.GetTotal());
+                            Checkout.GetFormattedGrandTotal(cart.GetTotal());
+                            Checkout.GetPayment(Checkout.GetGrandTotal(cart.GetTotal()));
+                        }
+
+                        checkout = true;
 
                         Console.Write("Would you like to keep shopping? (Y/N): ");
                         keepShopping = Validator.GetYesorNo();
@@ -80,6 +93,7 @@ namespace Midterm_StorePOS
                     }
                 }
             } Console.WriteLine("Thank you for shopping at THE Grocery Store!");
+            }
         }
     }
-}
+
